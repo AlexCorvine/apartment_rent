@@ -145,6 +145,25 @@
       max-width: 480px;
     }
 
+    .hero-price {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .price-val {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800;
+      color: var(--gold-light);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .price-note {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
     .hero-stats {
       display: flex;
       gap: 32px;
@@ -548,6 +567,10 @@
     <div class="hero-badge">Сдаётся · Москва</div>
     <h1 class="hero-title">2-комнатная<br>квартира &mdash; <span>22 этаж</span></h1>
     <p class="hero-sub">ЖК Holland Park · Евроремонт · Новая мебель и техника · 5 мин до м. Спартак</p>
+    <div class="hero-price">
+      <span class="price-val">110 000 ₽</span>
+      <span class="price-note">/ месяц · счётчики и коммуналка включены</span>
+    </div>
     <div class="hero-stats">
       <div class="stat"><span class="stat-val">27,3</span><span class="stat-label">м² жилая</span></div>
       <div class="stat"><span class="stat-val">12,3</span><span class="stat-label">м² кухня</span></div>
