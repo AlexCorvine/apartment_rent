@@ -67,6 +67,35 @@
     }
     .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
 
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-phone {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(201, 168, 76, 0.28);
+      background: rgba(15, 22, 36, 0.55);
+      color: #dde6f2;
+      font-size: 13px;
+      font-weight: 650;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: background var(--transition), border-color var(--transition), color var(--transition);
+      white-space: nowrap;
+    }
+    .nav-phone:hover {
+      color: var(--white);
+      border-color: rgba(201, 168, 76, 0.5);
+      background: rgba(15, 22, 36, 0.72);
+    }
+
     /* ── HERO ── */
     .hero {
       position: relative;
@@ -208,6 +237,46 @@
       border-radius: 999px;
       background: rgba(15, 22, 36, 0.54);
       border: 1px solid rgba(201, 168, 76, 0.14);
+    }
+
+    .hero-contact {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: 22px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .hero-contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 17px;
+      border-radius: 999px;
+      background: rgba(36, 48, 80, 0.82);
+      border: 1px solid rgba(201, 168, 76, 0.22);
+      color: #c8d8ec;
+      font-size: 14px;
+      font-weight: 650;
+      text-decoration: none;
+      backdrop-filter: blur(8px);
+      transition: border-color var(--transition), background var(--transition), color var(--transition);
+    }
+    .hero-contact-link:hover {
+      color: var(--white);
+      border-color: rgba(201, 168, 76, 0.42);
+      background: rgba(36, 48, 80, 0.95);
+    }
+    .hero-contact-link .svg-icon {
+      display: flex;
+      color: var(--gold-light);
+    }
+    .hero-contact-link .svg-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: none;
+      fill: currentColor;
     }
 
     .hero-stats {
@@ -894,7 +963,7 @@
       .m-cta-call-num { font-size: 12px; font-weight: 600; opacity: 0.92; letter-spacing: 0.02em; }
       .m-cta-write { background: #2980b9; color: #fff; }
       .m-cta-bar svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-      .nav-cta { display: none; }
+      .nav-actions { display: none; }
     }
   </style>
 </head>
@@ -979,7 +1048,10 @@
 <!-- NAV -->
 <nav>
   <div class="nav-brand">ЖК Холланд Парк · 22 этаж</div>
-  <a href="https://t.me/alexcorvine" class="nav-cta" target="_blank" rel="noopener">Написать →</a>
+  <div class="nav-actions">
+    <a class="nav-phone" href="tel:+79048195093" title="Позвонить Оксане">Оксана · +7&nbsp;904&nbsp;819-50-93</a>
+    <a href="https://t.me/alexcorvine" class="nav-cta" target="_blank" rel="noopener">Telegram →</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -1009,6 +1081,16 @@
       <div class="stat"><span class="stat-val">12,3</span><span class="stat-label">м² кухня</span></div>
       <div class="stat"><span class="stat-val">22</span><span class="stat-label">этаж</span></div>
       <div class="stat"><span class="stat-val">2022</span><span class="stat-label">год сдачи</span></div>
+    </div>
+    <div class="hero-contact" aria-label="Контакты">
+      <a class="hero-contact-link" href="tel:+79048195093">
+        <span class="svg-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-phone"></use></svg></span>
+        <span>Оксана · +7 904 819-50-93</span>
+      </a>
+      <a class="hero-contact-link" href="https://t.me/alexcorvine" target="_blank" rel="noopener">
+        <span class="svg-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-telegram"></use></svg></span>
+        <span>Telegram</span>
+      </a>
     </div>
   </div>
 </section>
