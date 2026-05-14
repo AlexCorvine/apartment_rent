@@ -104,11 +104,14 @@
     /* ── HERO ── */
     .hero {
       position: relative;
-      height: 100vh;
-      min-height: 600px;
+      /* min-height, not fixed height: lets the document scroll; overflow hidden on hero blocked wheel scroll chaining */
+      min-height: max(600px, 100vh);
+      min-height: max(600px, 100svh);
       display: flex;
-      align-items: flex-end;
-      overflow: hidden;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow-x: clip;
+      overflow-y: visible;
       padding-top: var(--nav-safe-top);
     }
 
@@ -151,11 +154,7 @@
       width: 100%;
       padding: 28px 40px 72px;
       max-width: 820px;
-      max-height: calc(100vh - var(--nav-safe-top) - 28px);
-      max-height: calc(100dvh - var(--nav-safe-top) - 28px);
-      overflow-y: auto;
-      overscroll-behavior: contain;
-      scrollbar-gutter: stable;
+      flex-shrink: 0;
     }
 
     .hero-title {
