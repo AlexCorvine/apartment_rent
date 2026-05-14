@@ -16,11 +16,16 @@
       --text-muted: #8fa3bf;
       --radius: 12px;
       --transition: 0.3s ease;
+      /* резерв под фиксированную шапку + запас, если контакты переносятся на две строки */
+      --nav-offset: 108px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--nav-offset);
+    }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
@@ -104,6 +109,7 @@
       display: flex;
       align-items: flex-end;
       overflow: hidden;
+      padding-top: var(--nav-offset);
     }
 
     .hero-bg {
@@ -141,8 +147,14 @@
 
     .hero-content {
       position: relative;
-      padding: 90px 40px 72px;
+      z-index: 1;
+      width: 100%;
+      padding: 28px 40px 72px;
       max-width: 820px;
+      max-height: calc(100svh - var(--nav-offset) - 12px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-gutter: stable;
     }
 
     .hero-title {
@@ -1080,7 +1092,7 @@
       <div class="stat"><span class="stat-val">27,3</span><span class="stat-label">м² жилая</span></div>
       <div class="stat"><span class="stat-val">12,3</span><span class="stat-label">м² кухня</span></div>
       <div class="stat"><span class="stat-val">22</span><span class="stat-label">этаж</span></div>
-      <div class="stat"><span class="stat-val">2022</span><span class="stat-label">год сдачи</span></div>
+      <div class="stat"><span class="stat-val">2023</span><span class="stat-label">год сдачи</span></div>
     </div>
     <div class="hero-contact" aria-label="Контакты">
       <a class="hero-contact-link" href="tel:+79048195093">
@@ -1221,7 +1233,7 @@
     <div class="m-spec-row"><span class="m-spec-key">Жилая площадь</span><span class="m-spec-val">27,3 м²</span></div>
     <div class="m-spec-row"><span class="m-spec-key">Кухня</span><span class="m-spec-val">12,3 м²</span></div>
     <div class="m-spec-row"><span class="m-spec-key">Этаж</span><span class="m-spec-val">22 из 24</span></div>
-    <div class="m-spec-row"><span class="m-spec-key">Тип дома</span><span class="m-spec-val">Монолит, 2022 г.</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Тип дома</span><span class="m-spec-val">Монолит, 2023 г.</span></div>
     <div class="m-spec-row"><span class="m-spec-key">Лифты</span><span class="m-spec-val">5 лифтов</span></div>
   </div>
   <div class="m-specs-group">
