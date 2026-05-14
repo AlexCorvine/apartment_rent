@@ -56,6 +56,51 @@
       color: var(--gold);
     }
 
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 22px;
+      border-radius: 50px;
+      background: var(--gold);
+      color: var(--night);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-phone {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(201, 168, 76, 0.28);
+      background: rgba(15, 22, 36, 0.55);
+      color: #dde6f2;
+      font-size: 13px;
+      font-weight: 650;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: background var(--transition), border-color var(--transition), color var(--transition);
+      white-space: nowrap;
+    }
+    .nav-phone:hover {
+      color: var(--white);
+      border-color: rgba(201, 168, 76, 0.5);
+      background: rgba(15, 22, 36, 0.72);
+    }
+
     /* ── HERO ── */
     .hero {
       position: relative;
@@ -731,6 +776,7 @@
     @media (max-width: 768px) {
       nav { padding: 14px 20px; }
       .nav-brand { font-size: 11px; white-space: nowrap; overflow: visible; max-width: 100%; }
+      .nav-actions { display: none; }
 
       .hero-content { padding: 0 20px 60px; }
       .hero-stats { gap: 20px; }
@@ -962,6 +1008,10 @@
 <!-- NAV -->
 <nav>
   <div class="nav-brand">ЖК Холланд Парк · 22 этаж</div>
+  <div class="nav-actions">
+    <a class="nav-phone" href="tel:+79048195093" title="Позвонить Оксане">Оксана · +7&nbsp;904&nbsp;819-50-93</a>
+    <a href="https://t.me/alexcorvine" class="nav-cta" target="_blank" rel="noopener">Telegram →</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -990,7 +1040,6 @@
       <div class="stat"><span class="stat-val">27,3</span><span class="stat-label">м² жилая</span></div>
       <div class="stat"><span class="stat-val">12,3</span><span class="stat-label">м² кухня</span></div>
       <div class="stat"><span class="stat-val">22</span><span class="stat-label">этаж</span></div>
-      <div class="stat"><span class="stat-val">2023</span><span class="stat-label">год сдачи</span></div>
     </div>
   </div>
 </section>
@@ -1121,7 +1170,7 @@
     <div class="m-spec-row"><span class="m-spec-key">Жилая площадь</span><span class="m-spec-val">27,3 м²</span></div>
     <div class="m-spec-row"><span class="m-spec-key">Кухня</span><span class="m-spec-val">12,3 м²</span></div>
     <div class="m-spec-row"><span class="m-spec-key">Этаж</span><span class="m-spec-val">22 из 24</span></div>
-    <div class="m-spec-row"><span class="m-spec-key">Тип дома</span><span class="m-spec-val">Монолит, 2023 г.</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Тип дома</span><span class="m-spec-val">Монолит</span></div>
     <div class="m-spec-row"><span class="m-spec-key">Лифты</span><span class="m-spec-val">5 лифтов</span></div>
   </div>
   <div class="m-specs-group">
