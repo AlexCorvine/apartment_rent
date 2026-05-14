@@ -16,15 +16,15 @@
       --text-muted: #8fa3bf;
       --radius: 12px;
       --transition: 0.3s ease;
-      /* резерв под фиксированную шапку + запас, если контакты переносятся на две строки */
-      --nav-offset: 108px;
+      /* место под фиксированную шапку + явный зазор до заголовка (nav поверх hero) */
+      --nav-safe-top: clamp(128px, 12vmin + 72px, 188px);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: var(--nav-offset);
+      scroll-padding-top: var(--nav-safe-top);
     }
 
     body {
@@ -109,7 +109,7 @@
       display: flex;
       align-items: flex-end;
       overflow: hidden;
-      padding-top: var(--nav-offset);
+      padding-top: var(--nav-safe-top);
     }
 
     .hero-bg {
@@ -151,7 +151,8 @@
       width: 100%;
       padding: 28px 40px 72px;
       max-width: 820px;
-      max-height: calc(100svh - var(--nav-offset) - 12px);
+      max-height: calc(100vh - var(--nav-safe-top) - 28px);
+      max-height: calc(100dvh - var(--nav-safe-top) - 28px);
       overflow-y: auto;
       overscroll-behavior: contain;
       scrollbar-gutter: stable;
