@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Сдаётся 1-комн. квартира, 35 м² · Кронштадтский б-р, 24к3</title>
+  <title>Сдаётся 2-комн. квартира, 52,1 м² · ЖК Холланд Парк</title>
   <style>
     :root {
       --night: #0f1624;
@@ -80,7 +80,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background-image: url('images/kitchen-2.jpg');
+      background-image: url('images/kitchen-entry.png');
       background-size: cover;
       background-position: center 30%;
       transform: scale(1.05);
@@ -104,14 +104,15 @@
       background: linear-gradient(
         to top,
         rgba(10, 14, 26, 0.98) 0%,
-        rgba(10, 14, 26, 0.65) 40%,
-        rgba(10, 14, 26, 0.15) 100%
+        rgba(10, 14, 26, 0.82) 35%,
+        rgba(10, 14, 26, 0.45) 65%,
+        rgba(10, 14, 26, 0.18) 100%
       );
     }
 
     .hero-content {
       position: relative;
-      padding: 0 40px 72px;
+      padding: 90px 40px 72px;
       max-width: 820px;
     }
 
@@ -135,15 +136,17 @@
       line-height: 1.08;
       letter-spacing: -0.02em;
       margin-bottom: 16px;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
     }
 
     .hero-title span { color: var(--gold); }
 
     .hero-sub {
       font-size: clamp(15px, 2vw, 18px);
-      color: var(--text-muted);
+      color: var(--white);
       margin-bottom: 14px;
       max-width: 480px;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
     }
 
     .hero-address {
@@ -269,44 +272,83 @@
     /* ── GALLERY ── */
     .gallery { background: var(--navy); }
 
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      grid-auto-rows: 220px;
-      gap: 10px;
+    .gallery-inner {
       max-width: 1200px;
       margin: 0 auto;
     }
 
-    .photo {
+    .gallery-viewer {
+      position: relative;
+      width: 100%;
+      height: 560px;
       border-radius: var(--radius);
       overflow: hidden;
       cursor: zoom-in;
-      position: relative;
       background: var(--blue-mid);
+      margin-bottom: 10px;
     }
-    .photo img {
+    .gallery-viewer img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
+      display: block;
+      transition: opacity 0.2s ease;
+    }
+    .gallery-viewer-counter {
+      position: absolute;
+      bottom: 14px;
+      right: 16px;
+      background: rgba(10, 14, 26, 0.72);
+      color: rgba(255,255,255,0.7);
+      font-size: 13px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.04em;
+      pointer-events: none;
+    }
+    .gallery-viewer-zoom {
+      position: absolute;
+      bottom: 14px;
+      left: 16px;
+      background: rgba(10, 14, 26, 0.72);
+      color: rgba(255,255,255,0.55);
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .gallery-thumbs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 2px;
+    }
+    .gallery-thumbs::-webkit-scrollbar { display: none; }
+
+    .gallery-thumb {
+      flex: 0 0 100px;
+      height: 68px;
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color var(--transition), opacity var(--transition);
+      background: var(--blue-mid);
+      opacity: 0.6;
+    }
+    .gallery-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
     }
-    .photo:hover img { transform: scale(1.04); }
-
-    .photo::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 50%);
-      opacity: 0;
-      transition: opacity var(--transition);
-    }
-    .photo:hover::after { opacity: 1; }
-
-    .photo-1 { grid-column: span 2; grid-row: span 2; }
-    .photo-2,
-    .photo-3 { grid-column: span 2; }
+    .gallery-thumb:hover { opacity: 0.85; }
+    .gallery-thumb.active { border-color: var(--gold); opacity: 1; }
 
     .terms-grid {
       display: grid;
@@ -416,10 +458,10 @@
     }
 
     .amenities-list {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 860px;
       list-style: none;
-      max-width: 520px;
     }
 
     .amenity {
@@ -485,6 +527,14 @@
     .location-inner {
       max-width: 1200px;
       margin: 0 auto;
+    }
+
+    .location-inner .location-lead {
+      color: #b0c0d8;
+      font-size: 15px;
+      line-height: 1.7;
+      max-width: 720px;
+      margin: 0 0 28px;
     }
 
     .location-grid {
@@ -697,7 +747,7 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav { padding: 14px 20px; }
-      .nav-brand { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 55%; }
+      .nav-brand { font-size: 11px; white-space: nowrap; overflow: visible; max-width: 100%; }
 
       .hero-content { padding: 0 20px 60px; }
       .hero-stats { gap: 20px; }
@@ -724,6 +774,7 @@
       }
       .photo-1, .photo-2, .photo-3 { grid-column: unset; grid-row: unset; }
 
+      .amenities-list { grid-template-columns: 1fr; }
       .about-grid { grid-template-columns: 1fr; gap: 36px; }
       .location-grid { grid-template-columns: 1fr; }
       .infra-grid { grid-template-columns: 1fr 1fr; }
@@ -866,134 +917,117 @@
 <!-- MOBILE SLIDER (shown only on mobile) -->
 <div class="m-slider-wrap">
   <div class="m-slider" id="m-slider">
-    <div class="m-slide" onclick="openLightbox('images/bedroom-1.jpg')"><img src="images/bedroom-1.jpg" alt="Жилая комната с двуспальной кроватью"></div>
-    <div class="m-slide" onclick="openLightbox('images/living-1.jpg')"><img src="images/living-1.jpg" alt="Рабочая зона у окна с выходом на лоджию"></div>
-    <div class="m-slide" onclick="openLightbox('images/bedroom-2.jpg')"><img src="images/bedroom-2.jpg" alt="Зона хранения и кондиционер"></div>
-    <div class="m-slide" onclick="openLightbox('images/kitchen-1.jpg')"><img src="images/kitchen-1.jpg" alt="Кухня с варочной панелью и стиральной машиной"></div>
-    <div class="m-slide" onclick="openLightbox('images/kitchen-2.jpg')"><img src="images/kitchen-2.jpg" alt="Кухня — обеденная зона"></div>
-    <div class="m-slide" onclick="openLightbox('images/kitchen-3.jpg')"><img src="images/kitchen-3.jpg" alt="Кухня с холодильником и духовым шкафом"></div>
-    <div class="m-slide" onclick="openLightbox('images/bathroom-2.jpg')"><img src="images/bathroom-2.jpg" alt="Совмещённый санузел с ванной"></div>
-    <div class="m-slide" onclick="openLightbox('images/bathroom-3.jpg')"><img src="images/bathroom-3.jpg" alt="Ванна"></div>
-    <div class="m-slide" onclick="openLightbox('images/bathroom-1.jpg')"><img src="images/bathroom-1.jpg" alt="Санузел"></div>
-    <div class="m-slide" onclick="openLightbox('images/wardrobe-1.jpg')"><img src="images/wardrobe-1.jpg" alt="Гардеробная — вешалки и стеллажи"></div>
-    <div class="m-slide" onclick="openLightbox('images/wardrobe-2.jpg')"><img src="images/wardrobe-2.jpg" alt="Гардеробная — места для хранения"></div>
-    <div class="m-slide" onclick="openLightbox('images/wardrobe-3.jpg')"><img src="images/wardrobe-3.jpg" alt="Гардеробная — органайзеры"></div>
-    <div class="m-slide" onclick="openLightbox('images/entry-1.jpg')"><img src="images/entry-1.jpg" alt="Прихожая с вешалкой и обувницей"></div>
-    <div class="m-slide" onclick="openLightbox('images/entry-2.jpg')"><img src="images/entry-2.jpg" alt="Прихожая — общий вид"></div>
-<div class="m-slide" onclick="openLightbox('images/neighborhood-pond-2.png')"><img src="images/neighborhood-pond-2.png" alt="Вид на пруд и зелёную зону"></div>
+    <div class="m-slide" onclick="openLightbox('images/kitchen-entry.png')"><img src="images/kitchen-entry.png" alt="Кухня и зона входа"></div>
+    <div class="m-slide" onclick="openLightbox('images/kitchen-1.png')"><img src="images/kitchen-1.png" alt="Кухня с островом"></div>
+    <div class="m-slide" onclick="openLightbox('images/kitchen-living-1.png')"><img src="images/kitchen-living-1.png" alt="Кухня-гостиная, обеденная зона"></div>
+    <div class="m-slide" onclick="openLightbox('images/kitchen-living-2.png')"><img src="images/kitchen-living-2.png" alt="Кухня-гостиная, вид из окна"></div>
+    <div class="m-slide" onclick="openLightbox('images/living-1.png')"><img src="images/living-1.png" alt="Гостиная, диван"></div>
+    <div class="m-slide" onclick="openLightbox('images/living-2.png')"><img src="images/living-2.png" alt="Гостиная, панорамные окна"></div>
+    <div class="m-slide" onclick="openLightbox('images/living-3.png')"><img src="images/living-3.png" alt="Гостиная, зона у телевизора"></div>
+    <div class="m-slide" onclick="openLightbox('images/bedroom-1.png')"><img src="images/bedroom-1.png" alt="Спальня, шкаф и кровать"></div>
+    <div class="m-slide" onclick="openLightbox('images/bedroom-2.png')"><img src="images/bedroom-2.png" alt="Спальня, вид из окна"></div>
+    <div class="m-slide" onclick="openLightbox('images/bathroom-1.png')"><img src="images/bathroom-1.png" alt="Санузел, стиральная машина"></div>
+    <div class="m-slide" onclick="openLightbox('images/bathroom-2.png')"><img src="images/bathroom-2.png" alt="Санузел"></div>
+    <div class="m-slide" onclick="openLightbox('images/bathroom-shower.png')"><img src="images/bathroom-shower.png" alt="Душевая"></div>
+    <div class="m-slide" onclick="openLightbox('images/view-window.jpg')"><img src="images/view-window.jpg" alt="Вид из окна"></div>
+    <div class="m-slide" onclick="openLightbox('images/building-exterior.jpg')"><img src="images/building-exterior.jpg" alt="Фасад дома, ЖК «Холланд Парк»"></div>
+    <div class="m-slide" onclick="openLightbox('images/neighborhood-park.jpg')"><img src="images/neighborhood-park.jpg" alt="Парк и двор"></div>
+    <div class="m-slide" onclick="openLightbox('images/church-landmark.jpg')"><img src="images/church-landmark.jpg" alt="Храм рядом с ЖК"></div>
   </div>
   <div class="m-slider-counter" id="m-slider-counter">1 из 16</div>
 </div>
 
 <!-- MOBILE INFO (shown only on mobile) -->
 <div class="m-info-wrap">
-  <div class="m-badge">Сдаётся · Без комиссии</div>
-  <div class="m-price">45 000 ₽<span class="m-price-per"> / мес</span></div>
-  <div class="m-price-note">+ счётчики (~4 000 ₽) + интернет</div>
-  <div class="m-title">1-комн. квартира, 35 м²</div>
-  <div class="m-address">Кронштадтский бульвар, 24к3, Москва</div>
-  <a class="m-maps-link" href="https://maps.google.com/?q=Кронштадтский+бульвар+24к3+Москва" target="_blank" rel="noopener">
+  <div class="m-badge">Сдаётся · Москва</div>
+  <div class="m-price">110 000 ₽<span class="m-price-per"> / мес</span></div>
+  <div class="m-price-note">ЖКХ и счётчики включены · залог 100 000 ₽</div>
+  <div class="m-title">2-комн. квартира, 52,1 м²</div>
+  <div class="m-address">Волоколамское ш., 71/13к1, ЖК «Холланд Парк»</div>
+  <a class="m-maps-link" href="https://www.google.com/maps?q=55.815418,37.426132" target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
     Показать на карте →
   </a>
   <div class="m-transport">
-    <span class="m-chip">м. Водный стадион — 10 мин.</span>
-    <span class="m-chip">МЦК Коптево — 10 мин. пешком</span>
+    <span class="m-chip">м. Спартак — 10 мин. пешком</span>
+    <span class="m-chip">м. Тушинская — 20 мин. пешком</span>
+    <span class="m-chip">МЦД Стрешнево — 8 мин. на машине</span>
   </div>
   <div class="m-facts">
-    <div class="m-fact"><span class="m-fact-val">35 м²</span><span class="m-fact-label">Общая</span></div>
-    <div class="m-fact"><span class="m-fact-val">19 м²</span><span class="m-fact-label">Жилая</span></div>
-    <div class="m-fact"><span class="m-fact-val">10 м²</span><span class="m-fact-label">Кухня</span></div>
-    <div class="m-fact"><span class="m-fact-val">1</span><span class="m-fact-label">Комната</span></div>
+    <div class="m-fact"><span class="m-fact-val">52,1</span><span class="m-fact-label">м² общая</span></div>
+    <div class="m-fact"><span class="m-fact-val">27,3</span><span class="m-fact-label">м² жилая</span></div>
+    <div class="m-fact"><span class="m-fact-val">12,3</span><span class="m-fact-label">м² кухня</span></div>
+    <div class="m-fact"><span class="m-fact-val">22</span><span class="m-fact-label">этаж</span></div>
   </div>
 </div>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-brand">Кронштадтский б-р, 24к3 · м. Водный стадион</div>
+  <div class="nav-brand">ЖК Холланд Парк · 22 этаж</div>
   <a href="https://t.me/born021056" class="nav-cta" target="_blank" rel="noopener">Написать →</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg" style="background-image: url('images/bedroom-1.jpg')"></div>
+  <div class="hero-bg" style="background-image: url('images/kitchen-entry.png')"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-badge">Сдаётся · Москва · Без комиссии</div>
-    <h1 class="hero-title">Уютная 1-комн. квартира, <span>35 м²</span><br>с видом на парк и пруд</h1>
-    <p class="hero-sub">Свежий ремонт, гардеробная, большая застеклённая лоджия. Тихая, тёплая, с отличной звукоизоляцией.</p>
-    <div class="hero-address">Кронштадтский бульвар, 24к3</div>
+    <div class="hero-badge">Сдаётся · Москва</div>
+    <h1 class="hero-title">Сдаётся 2-комн. квартира, <span>52,1 м²</span><br>в ЖК «Холланд Парк»</h1>
+    <p class="hero-sub">Современный евроремонт, новая мебель и техника, 22 этаж в новом доме.</p>
+    <div class="hero-address">Волоколамское ш., 71/13к1</div>
     <div class="hero-transport" aria-label="Транспортная доступность">
-      <span class="hero-chip"><strong>м. Водный стадион</strong>10 мин. на транспорте</span>
-      <span class="hero-chip"><strong>МЦК Коптево</strong>10 мин. пешком</span>
-      <span class="hero-chip"><strong>м. Водный стадион</strong>22 мин. пешком</span>
+      <span class="hero-chip"><strong>м. Спартак</strong>10 мин. пешком</span>
+      <span class="hero-chip"><strong>м. Тушинская</strong>20 мин. пешком</span>
+      <span class="hero-chip"><strong>МЦД Стрешнево</strong>8 мин. на машине</span>
     </div>
     <div class="hero-price">
-      <span class="price-val">45 000 ₽</span>
-      <span class="price-note">/ месяц + счётчики (~4 000 ₽) + интернет</span>
+      <span class="price-val">110 000 ₽</span>
+      <span class="price-note">/ месяц</span>
     </div>
     <div class="hero-lease" aria-label="Основные условия аренды">
-      <span>Без комиссии</span>
-      <span>Напрямую от собственника</span>
-      <span>На длительный срок</span>
+      <span>ЖКХ и счётчики включены</span>
+      <span>Залог 100 000 ₽</span>
     </div>
     <div class="hero-stats">
-      <div class="stat"><span class="stat-val">35</span><span class="stat-label">м² общая</span></div>
-      <div class="stat"><span class="stat-val">19</span><span class="stat-label">м² жилая</span></div>
-      <div class="stat"><span class="stat-val">10</span><span class="stat-label">м² кухня</span></div>
-      <div class="stat"><span class="stat-val">1</span><span class="stat-label">комната</span></div>
+      <div class="stat"><span class="stat-val">52,1</span><span class="stat-label">м² общая</span></div>
+      <div class="stat"><span class="stat-val">27,3</span><span class="stat-label">м² жилая</span></div>
+      <div class="stat"><span class="stat-val">12,3</span><span class="stat-label">м² кухня</span></div>
+      <div class="stat"><span class="stat-val">22</span><span class="stat-label">этаж</span></div>
+      <div class="stat"><span class="stat-val">2022</span><span class="stat-label">год сдачи</span></div>
     </div>
   </div>
 </section>
 
 <!-- GALLERY -->
 <section class="gallery">
-  <div class="section-tag" style="text-align:center; margin-bottom: 28px;">Фотографии</div>
-  <div class="gallery-grid">
-    <div class="photo photo-1" onclick="openLightbox('images/bedroom-1.jpg')">
-      <img src="images/bedroom-1.jpg" alt="Жилая комната с двуспальной кроватью" loading="lazy">
+  <div class="gallery-inner">
+    <div class="section-tag" style="margin-bottom: 20px;">Фотографии</div>
+    <div class="gallery-viewer" id="gallery-viewer" onclick="openLightboxAt(galleryActiveIndex)">
+      <img id="gallery-main-img" src="images/kitchen-entry.png" alt="">
+      <div class="gallery-viewer-zoom">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+        Открыть
+      </div>
+      <div class="gallery-viewer-counter" id="gallery-counter">1 / 16</div>
     </div>
-    <div class="photo photo-2" onclick="openLightbox('images/living-1.jpg')">
-      <img src="images/living-1.jpg" alt="Рабочая зона у окна с выходом на лоджию" loading="lazy">
-    </div>
-    <div class="photo photo-3" onclick="openLightbox('images/bedroom-2.jpg')">
-      <img src="images/bedroom-2.jpg" alt="Зона хранения и кондиционер" loading="lazy">
-    </div>
-    <div class="photo" onclick="openLightbox('images/kitchen-1.jpg')">
-      <img src="images/kitchen-1.jpg" alt="Кухня с варочной панелью и стиральной машиной" loading="lazy">
-    </div>
-    <div class="photo" onclick="openLightbox('images/kitchen-2.jpg')">
-      <img src="images/kitchen-2.jpg" alt="Кухня — обеденная зона" loading="lazy">
-    </div>
-    <div class="photo" onclick="openLightbox('images/kitchen-3.jpg')">
-      <img src="images/kitchen-3.jpg" alt="Кухня с холодильником и духовым шкафом" loading="lazy">
-    </div>
-    <div class="photo" onclick="openLightbox('images/bathroom-2.jpg')">
-      <img src="images/bathroom-2.jpg" alt="Совмещённый санузел с ванной" loading="lazy">
-    </div>
-    <div class="photo" onclick="openLightbox('images/bathroom-3.jpg')">
-      <img src="images/bathroom-3.jpg" alt="Ванна" loading="lazy">
-    </div>
-    <div class="photo" onclick="openLightbox('images/bathroom-1.jpg')">
-      <img src="images/bathroom-1.jpg" alt="Санузел" loading="lazy">
-    </div>
-    <div class="photo" onclick="openLightbox('images/wardrobe-1.jpg')">
-      <img src="images/wardrobe-1.jpg" alt="Гардеробная — вешалки и стеллажи" loading="lazy">
-    </div>
-    <div class="photo" onclick="openLightbox('images/wardrobe-2.jpg')">
-      <img src="images/wardrobe-2.jpg" alt="Гардеробная — места для хранения" loading="lazy">
-    </div>
-    <div class="photo" onclick="openLightbox('images/wardrobe-3.jpg')">
-      <img src="images/wardrobe-3.jpg" alt="Гардеробная — органайзеры" loading="lazy">
-    </div>
-    <div class="photo" onclick="openLightbox('images/entry-1.jpg')">
-      <img src="images/entry-1.jpg" alt="Прихожая с вешалкой и обувницей" loading="lazy">
-    </div>
-    <div class="photo" onclick="openLightbox('images/entry-2.jpg')">
-      <img src="images/entry-2.jpg" alt="Прихожая — общий вид" loading="lazy">
-    </div>
-<div class="photo" onclick="openLightbox('images/neighborhood-pond-2.png')">
-      <img src="images/neighborhood-pond-2.png" alt="Вид на пруд и зелёную зону" loading="lazy">
+    <div class="gallery-thumbs" id="gallery-thumbs">
+      <div class="gallery-thumb active" onclick="setGalleryImage(0)"><img src="images/kitchen-entry.png" alt="Кухня и зона входа" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(1)"><img src="images/kitchen-1.png" alt="Кухня" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(2)"><img src="images/kitchen-living-1.png" alt="Кухня-гостиная, обеденная зона" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(3)"><img src="images/kitchen-living-2.png" alt="Кухня-гостиная" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(4)"><img src="images/living-1.png" alt="Гостиная" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(5)"><img src="images/living-2.png" alt="Гостиная, окна" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(6)"><img src="images/living-3.png" alt="Гостиная, телевизор" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(7)"><img src="images/bedroom-1.png" alt="Спальня" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(8)"><img src="images/bedroom-2.png" alt="Спальня, вид" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(9)"><img src="images/bathroom-1.png" alt="Санузел" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(10)"><img src="images/bathroom-2.png" alt="Санузел" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(11)"><img src="images/bathroom-shower.png" alt="Душевая" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(12)"><img src="images/view-window.jpg" alt="Вид из окна" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(13)"><img src="images/building-exterior.jpg" alt="Дом" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(14)"><img src="images/neighborhood-park.jpg" alt="Окрестности" loading="lazy"></div>
+      <div class="gallery-thumb" onclick="setGalleryImage(15)"><img src="images/church-landmark.jpg" alt="Храм" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -1004,48 +1038,49 @@
     <div class="about-grid">
       <div class="about-text">
         <div class="section-tag">О квартире</div>
-        <h2 class="section-title">Уютная и светлая<br>1-комнатная квартира</h2>
+        <h2 class="section-title">Уютная квартира<br>в новом состоянии</h2>
         <p>
-          Предлагается в аренду просторная и очень уютная 1-комнатная квартира
-          со свежим ремонтом, идеально подходящая для комфортного проживания
-          1–2 человек. Из окон — приятный вид на парк и пруд.
+          Сдаётся уютная двухкомнатная квартира в современном ЖК «Holland Park».
+          Последние 1,5 года в ней жили две девушки, поэтому квартира остаётся
+          в новом состоянии и готова к аккуратным жильцам.
         </p>
         <p>
-          Планировка продумана и удобна: просторная жилая комната с двуспальной
-          кроватью и рабочим местом, отдельная вместительная гардеробная,
-          большая кухня 10 м² и совмещённый санузел с ванной. Большая
-          застеклённая лоджия с видом на пруд и парк.
+          Удобная планировка: две изолированные комнаты и просторная кухня-гостиная
+          позволяют комфортно организовать быт и отдых.
         </p>
         <p>
-          Квартира тёплая, тихая, с отличной звукоизоляцией. В шаговой
-          доступности — парк, пруд, магазины и вся необходимая инфраструктура.
+          Ремонт делался «под себя»: качественные материалы, дополнительная
+          звукоизоляция, тёплые полы, новая мебель и техника. Кухня «Дядьково»
+          оснащена встроенной посудомоечной машиной, духовым шкафом, варочной
+          панелью и новым холодильником.
         </p>
         <p>
-          Сдаётся на длительный срок, предпочтительно без животных.
-          Без комиссии, напрямую от собственника.
+          В спальне есть двуспальная кровать, шторы блэкаут, звукоизолированные
+          стены и потолок. В квартире также установлены стиральная машина,
+          кондиционеры в гостиной и спальне, душевая кабина и вместительные шкафы.
         </p>
       </div>
       <div class="specs-column">
         <div class="specs-grid">
           <div class="spec-card">
             <div class="spec-icon"><span class="svg-icon"><svg><use href="#icon-area"></use></svg></span></div>
-            <div class="spec-val">35 м²</div>
+            <div class="spec-val">52,1 м²</div>
             <div class="spec-name">Общая площадь</div>
           </div>
           <div class="spec-card">
             <div class="spec-icon"><span class="svg-icon"><svg><use href="#icon-bed"></use></svg></span></div>
-            <div class="spec-val">19 м²</div>
-            <div class="spec-name">Жилая комната</div>
+            <div class="spec-val">27,3 м²</div>
+            <div class="spec-name">Жилая площадь</div>
           </div>
           <div class="spec-card">
             <div class="spec-icon"><span class="svg-icon"><svg><use href="#icon-kitchen"></use></svg></span></div>
-            <div class="spec-val">10 м²</div>
+            <div class="spec-val">12,3 м²</div>
             <div class="spec-name">Просторная кухня</div>
           </div>
           <div class="spec-card">
             <div class="spec-icon"><span class="svg-icon"><svg><use href="#icon-building"></use></svg></span></div>
-            <div class="spec-val">Лоджия</div>
-            <div class="spec-name">Застеклённая, с видом</div>
+            <div class="spec-val">22 из 24</div>
+            <div class="spec-name">Высокий этаж</div>
           </div>
         </div>
         <div class="terms-grid">
@@ -1053,25 +1088,25 @@
             <span class="svg-icon"><svg><use href="#icon-safe"></use></svg></span>
             <div class="term-label">Комиссия</div>
             <div class="term-value">Нет</div>
-            <div class="term-note">Напрямую от собственника.</div>
+            <div class="term-note">Без комиссии для арендатора.</div>
           </div>
           <div class="term-card">
             <span class="svg-icon"><svg><use href="#icon-area"></use></svg></span>
-            <div class="term-label">Цена</div>
-            <div class="term-value">45 000 ₽ / мес</div>
-            <div class="term-note">+ счётчики (~4 000 ₽) + интернет.</div>
+            <div class="term-label">Предоплата</div>
+            <div class="term-value">1 месяц</div>
+            <div class="term-note">Залог указан рядом с ценой.</div>
           </div>
           <div class="term-card">
             <span class="svg-icon"><svg><use href="#icon-building"></use></svg></span>
             <div class="term-label">Срок аренды</div>
-            <div class="term-value">Длительный</div>
-            <div class="term-note">Идеально на год и более.</div>
+            <div class="term-value">От года</div>
+            <div class="term-note">Долгосрочная аренда.</div>
           </div>
           <div class="term-card">
             <span class="svg-icon"><svg><use href="#icon-safe"></use></svg></span>
             <div class="term-label">Жильцы</div>
-            <div class="term-value">1–2 человека</div>
-            <div class="term-note">Предпочтительно без животных.</div>
+            <div class="term-value">Семья / 1–2 жильца</div>
+            <div class="term-note">Можно с детьми от 6 лет, без домашних животных.</div>
           </div>
         </div>
       </div>
@@ -1085,27 +1120,28 @@
   <div class="m-specs-group">
     <div class="m-specs-group-title">Параметры</div>
     <div class="m-spec-row"><span class="m-spec-key">Тип</span><span class="m-spec-val">Квартира</span></div>
-    <div class="m-spec-row"><span class="m-spec-key">Комнат</span><span class="m-spec-val">1</span></div>
-    <div class="m-spec-row"><span class="m-spec-key">Общая площадь</span><span class="m-spec-val">35 м²</span></div>
-    <div class="m-spec-row"><span class="m-spec-key">Жилая площадь</span><span class="m-spec-val">19 м²</span></div>
-    <div class="m-spec-row"><span class="m-spec-key">Кухня</span><span class="m-spec-val">10 м²</span></div>
-    <div class="m-spec-row"><span class="m-spec-key">Лоджия</span><span class="m-spec-val">Большая, застеклённая</span></div>
-    <div class="m-spec-row"><span class="m-spec-key">Гардеробная</span><span class="m-spec-val">Есть</span></div>
-    <div class="m-spec-row"><span class="m-spec-key">Санузел</span><span class="m-spec-val">Совмещённый, с ванной</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Комнат</span><span class="m-spec-val">2</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Общая площадь</span><span class="m-spec-val">52,1 м²</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Жилая площадь</span><span class="m-spec-val">27,3 м²</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Кухня</span><span class="m-spec-val">12,3 м²</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Этаж</span><span class="m-spec-val">22 из 24</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Тип дома</span><span class="m-spec-val">Монолит, 2022 г.</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Лифты</span><span class="m-spec-val">5 лифтов</span></div>
   </div>
   <div class="m-specs-group">
     <div class="m-specs-group-title">Условия аренды</div>
-    <div class="m-spec-row"><span class="m-spec-key">Цена</span><span class="m-spec-val">45 000 ₽/мес</span></div>
-    <div class="m-spec-row"><span class="m-spec-key">Залог</span><span class="m-spec-val">1 месяц</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Цена</span><span class="m-spec-val">110 000 ₽/мес</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Залог</span><span class="m-spec-val">100 000 ₽</span></div>
     <div class="m-spec-row"><span class="m-spec-key">Комиссия</span><span class="m-spec-val">Нет</span></div>
-    <div class="m-spec-row"><span class="m-spec-key">По счётчикам</span><span class="m-spec-val">Да (~4 000 ₽)</span></div>
-    <div class="m-spec-row"><span class="m-spec-key">Интернет</span><span class="m-spec-val">Дополнительно</span></div>
-    <div class="m-spec-row"><span class="m-spec-key">Срок аренды</span><span class="m-spec-val">Длительный</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Предоплата</span><span class="m-spec-val">1 месяц</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">ЖКХ и счётчики</span><span class="m-spec-val">Включены</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Срок аренды</span><span class="m-spec-val">От года</span></div>
   </div>
   <div class="m-specs-group">
     <div class="m-specs-group-title">Правила</div>
-    <div class="m-spec-row"><span class="m-spec-key">Жильцов</span><span class="m-spec-val">1–2 человека</span></div>
-    <div class="m-spec-row"><span class="m-spec-key">Животные</span><span class="m-spec-val">Нежелательно</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Жильцы</span><span class="m-spec-val">Семья / 1–2 жильца</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Дети</span><span class="m-spec-val">Можно с 6 лет</span></div>
+    <div class="m-spec-row"><span class="m-spec-key">Животные</span><span class="m-spec-val">Без домашних животных</span></div>
   </div>
 </div>
 
@@ -1113,20 +1149,22 @@
 <section class="amenities">
   <div class="amenities-inner">
     <div class="section-tag">Оснащение</div>
-    <h2 class="section-title">В Квартире есть</h2>
+    <h2 class="section-title">В квартире есть</h2>
     <ul class="amenities-list">
-      <li class="amenity"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-snow"></use></svg></span></span>Кондиционеры в кухне и комнате</li>
+      <li class="amenity"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-snow"></use></svg></span></span>Кондиционеры в гостиной и спальне</li>
+      <li class="amenity"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-dishwasher"></use></svg></span></span>Встроенная посудомоечная машина</li>
       <li class="amenity"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-oven"></use></svg></span></span>Духовой шкаф и варочная панель</li>
-      <li class="amenity"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-fridge"></use></svg></span></span>Холодильник</li>
+      <li class="amenity"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-warm"></use></svg></span></span>Полы с подогревом</li>
+      <li class="amenity"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-shower"></use></svg></span></span>Ванная с душевой кабиной</li>
       <li class="amenity"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-washer"></use></svg></span></span>Стиральная машина</li>
-      <li class="amenity"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-shower"></use></svg></span></span>Совмещённый санузел с ванной</li>
-      <li class="amenity amenity-hidden"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-bed"></use></svg></span></span>Двуспальная кровать</li>
-      <li class="amenity amenity-hidden"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-sofa"></use></svg></span></span>Удобное рабочее место</li>
-      <li class="amenity amenity-hidden"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-safe"></use></svg></span></span>Вместительная гардеробная</li>
-      <li class="amenity amenity-hidden"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-area"></use></svg></span></span>Много мест для хранения</li>
-      <li class="amenity amenity-hidden"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-building"></use></svg></span></span>Большая застеклённая лоджия</li>
-      <li class="amenity amenity-hidden"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-sound"></use></svg></span></span>Отличная звукоизоляция</li>
-      <li class="amenity amenity-hidden"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-warm"></use></svg></span></span>Тёплая и тихая</li>
+      <li class="amenity amenity-hidden"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-bed"></use></svg></span></span>Двуспальная кровать и шторы блэкаут</li>
+      <li class="amenity amenity-hidden"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-tv"></use></svg></span></span>Телевизор</li>
+      <li class="amenity amenity-hidden"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-wifi"></use></svg></span></span>Интернет</li>
+      <li class="amenity amenity-hidden"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-fridge"></use></svg></span></span>Новый холодильник</li>
+      <li class="amenity amenity-hidden"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-safe"></use></svg></span></span>Вместительные шкафы</li>
+      <li class="amenity amenity-hidden"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-sound"></use></svg></span></span>Дополнительная звукоизоляция</li>
+      <li class="amenity amenity-hidden"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-safe"></use></svg></span></span>Закрытая территория с охраной</li>
+      <li class="amenity amenity-hidden"><span class="amenity-icon"><span class="svg-icon"><svg><use href="#icon-playground"></use></svg></span></span>Двор без машин и детская площадка</li>
     </ul>
     <button class="amenities-toggle" id="amenities-toggle" onclick="toggleAmenities()">Посмотреть всё <span>▾</span></button>
   </div>
@@ -1136,51 +1174,47 @@
 <section>
   <div class="location-inner">
     <div class="section-tag">Расположение</div>
-    <h2 class="section-title">В самом центре жизни</h2>
+    <h2 class="section-title">Новый район с современной инфраструктурой</h2>
+    <p class="location-lead">
+      Район обжитой и благоустроенный: рядом всё, что нужно для комфортной жизни — магазины, аптеки,
+      пекарни, салоны красоты, школы и детские сады.
+    </p>
     <div class="location-grid">
       <div>
         <ul class="transport-list">
           <li class="transport-item">
             <span class="transport-badge metro-badge">М</span>
-            <span><strong>м. Водный стадион</strong> — 10 минут на транспорте</span>
+            <span><strong>м. Спартак</strong> — 10 минут пешком</span>
           </li>
           <li class="transport-item">
             <span class="transport-badge metro-badge">М</span>
-            <span><strong>м. Водный стадион</strong> — 22 минуты пешком</span>
+            <span><strong>м. Тушинская</strong> — 20 минут пешком</span>
           </li>
           <li class="transport-item">
             <span class="transport-badge walk-badge"><span class="svg-icon"><svg><use href="#icon-walk"></use></svg></span></span>
-            <span><strong>МЦК Коптево</strong> — 10 минут пешком</span>
-          </li>
-          <li class="transport-item">
-            <span class="transport-badge walk-badge"><span class="svg-icon"><svg><use href="#icon-playground"></use></svg></span></span>
-            <span>Парк и пруд в шаговой доступности</span>
+            <span><strong>МЦД Стрешнево</strong> — 8 минут на машине</span>
           </li>
         </ul>
-<p class="contact-sub" style="text-align:left; margin-top: 28px; margin-bottom: 0;">
-          Район обжитой и благоустроенный: рядом всё, что нужно для комфортной
-          жизни — магазины, аптеки, кафе, школы и детские сады. В двух шагах —
-          парк и Головинские пруды.
-        </p>
+        <a href="https://www.google.com/maps?q=55.815418,37.426132" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:8px;color:#4dabf7;font-size:14px;font-weight:600;text-decoration:none;margin-top:4px;">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          Показать на карте →
+        </a>
       </div>
       <div class="map-placeholder">
         <iframe
-          src="https://www.openstreetmap.org/export/embed.html?bbox=37.502%2C55.837%2C37.522%2C55.857&layer=mapnik&marker=55.8475%2C37.5123"
-          title="Карта расположения — Кронштадтский бульвар, 24к3"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=37.416%2C55.805%2C37.436%2C55.825&layer=mapnik&marker=55.815418%2C37.426132"
+          title="Карта расположения — Волоколамское ш., 71/13к1"
           allowfullscreen>
         </iframe>
       </div>
-      <a href="https://maps.google.com/?q=Кронштадтский+бульвар+24к3+Москва" target="_blank" rel="noopener"
-         style="display:block;text-align:center;color:#4dabf7;font-size:14px;font-weight:600;text-decoration:none;margin-top:12px;">
-        Показать на карте в Google Maps →
-      </a>
     </div>
   </div>
 </section>
 
 
 <footer>
-  Кронштадтский бульвар, 24к3 · Москва &nbsp;·&nbsp; Вся информация носит информационный характер
+  Волоколамское ш., 71/13к1 · Москва &nbsp;·&nbsp; Вся информация носит информационный характер
 </footer>
 
 <!-- MOBILE CTA BAR (shown only on mobile) -->
@@ -1205,18 +1239,57 @@
 </div>
 
 <script>
-  const galleryImages = Array.from(document.querySelectorAll('.gallery .photo img'))
-    .map(img => ({ src: img.src, alt: img.alt }));
+  const galleryImages = [
+    { src: 'images/kitchen-entry.png', alt: 'Кухня и зона входа' },
+    { src: 'images/kitchen-1.png', alt: 'Кухня с островом' },
+    { src: 'images/kitchen-living-1.png', alt: 'Кухня-гостиная, обеденная зона' },
+    { src: 'images/kitchen-living-2.png', alt: 'Кухня-гостиная, вид из окна' },
+    { src: 'images/living-1.png', alt: 'Гостиная, диван' },
+    { src: 'images/living-2.png', alt: 'Гостиная, панорамные окна' },
+    { src: 'images/living-3.png', alt: 'Гостиная, зона у телевизора' },
+    { src: 'images/bedroom-1.png', alt: 'Спальня, шкаф и кровать' },
+    { src: 'images/bedroom-2.png', alt: 'Спальня, вид из окна' },
+    { src: 'images/bathroom-1.png', alt: 'Санузел, стиральная машина' },
+    { src: 'images/bathroom-2.png', alt: 'Санузел' },
+    { src: 'images/bathroom-shower.png', alt: 'Душевая' },
+    { src: 'images/view-window.jpg', alt: 'Вид из окна' },
+    { src: 'images/building-exterior.jpg', alt: 'Фасад дома, ЖК «Холланд Парк»' },
+    { src: 'images/neighborhood-park.jpg', alt: 'Парк и двор' },
+    { src: 'images/church-landmark.jpg', alt: 'Храм рядом с ЖК' },
+  ];
 
   let currentIndex = 0;
+  let galleryActiveIndex = 0;
+
+  function setGalleryImage(idx) {
+    galleryActiveIndex = idx;
+    const item = galleryImages[idx];
+    const mainImg = document.getElementById('gallery-main-img');
+    mainImg.style.opacity = '0';
+    setTimeout(() => {
+      mainImg.src = item.src;
+      mainImg.alt = item.alt;
+      mainImg.style.opacity = '1';
+    }, 120);
+    document.getElementById('gallery-counter').textContent = (idx + 1) + ' / ' + galleryImages.length;
+    document.querySelectorAll('.gallery-thumb').forEach((el, i) => {
+      el.classList.toggle('active', i === idx);
+    });
+    const thumbs = document.getElementById('gallery-thumbs');
+    const thumb = thumbs.querySelectorAll('.gallery-thumb')[idx];
+    if (thumb) thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
+
+  function openLightboxAt(idx) {
+    currentIndex = idx;
+    showLightboxImage();
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
 
   function openLightbox(src) {
     const idx = galleryImages.findIndex(i => i.src.endsWith(src.replace(/^.*\//, '')));
-    currentIndex = idx >= 0 ? idx : 0;
-    showLightboxImage();
-    const lb = document.getElementById('lightbox');
-    lb.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    openLightboxAt(idx >= 0 ? idx : 0);
   }
 
   function showLightboxImage() {

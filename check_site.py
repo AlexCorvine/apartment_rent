@@ -25,14 +25,29 @@ required_text = [
     "Залог 100 000 ₽",
     "Интернет",
     "Телевизор",
-    "В Квартире есть",
+    "В квартире есть",
     "52,1",
+    "Новый район с современной инфраструктурой",
+    "Район обжитой и благоустроенный",
 ]
 
 required_images = [
-    "images/kitchen-entry.jpg",
-    "images/neighborhood-park.jpg",
+    "images/kitchen-entry.png",
+    "images/kitchen-1.png",
+    "images/kitchen-living-1.png",
+    "images/kitchen-living-2.png",
+    "images/living-1.png",
+    "images/living-2.png",
+    "images/living-3.png",
+    "images/bedroom-1.png",
+    "images/bedroom-2.png",
+    "images/bathroom-1.png",
+    "images/bathroom-2.png",
+    "images/bathroom-shower.png",
     "images/view-window.jpg",
+    "images/building-exterior.jpg",
+    "images/neighborhood-park.jpg",
+    "images/church-landmark.jpg",
 ]
 
 for text in required_text:
@@ -43,7 +58,19 @@ for image in required_images:
     assert (ROOT / image).exists(), f"Image file missing: {image}"
 
 assert "svg-icon" in html, "Expected inline SVG icon styling"
-assert html.count('class="photo photo-') >= 11, "Expected expanded gallery"
+assert "Кронштадт" not in html, "Old listing content should be removed"
+assert "Водный стадион" not in html, "Old listing transport should be removed"
+assert "45 000 ₽" not in html, "Old listing price should be removed"
+assert "35 м²" not in html, "Old listing area should be removed"
+
+for image in [
+    "images/pond-view-1.png",
+    "images/pond-view-2.png",
+    "images/bathroom-1.jpg",
+    "images/wardrobe-1.jpg",
+    "images/entry-1.jpg",
+]:
+    assert image not in html, f"Old listing image should not be referenced: {image}"
 
 for image in [
     "images/listing-specs.jpg",
@@ -63,17 +90,22 @@ assert 'class="hero-address"' in html, "Address should be moved into a readable 
 assert "marker=55.815418%2C37.426132" in html, "Map marker should match Volokolamskoe sh., 71/13k1"
 
 gallery_order = [
-    "images/kitchen-entry.jpg",
-    "images/kitchen-2.jpg",
-    "images/kitchen-1.jpg",
-    "images/living-1.jpg",
-    "images/living-3.jpg",
-    "images/bedroom-1.jpg",
-    "images/bedroom-2.jpg",
+    "images/kitchen-entry.png",
+    "images/kitchen-1.png",
+    "images/kitchen-living-1.png",
+    "images/kitchen-living-2.png",
+    "images/living-1.png",
+    "images/living-2.png",
+    "images/living-3.png",
+    "images/bedroom-1.png",
+    "images/bedroom-2.png",
+    "images/bathroom-1.png",
+    "images/bathroom-2.png",
+    "images/bathroom-shower.png",
     "images/view-window.jpg",
-    "images/building.jpg",
+    "images/building-exterior.jpg",
     "images/neighborhood-park.jpg",
-    "images/church.jpg",
+    "images/church-landmark.jpg",
 ]
 gallery_start = html.index('<section class="gallery">')
 gallery_end = html.index("</section>", gallery_start)
